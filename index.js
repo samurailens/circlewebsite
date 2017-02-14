@@ -1,11 +1,24 @@
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 81;
+var path = require('path')
 
-app.use(express.static(__dirname + './'));
+var bodyParser = require('body-parser');
+app.use(bodyParser());
 
-app.use(express.static(__dirname + './css/*'));
-app.use(express.static(__dirname + './js/*'));
+// app.use(express.static('css'))
+// app.use(express.static('images'))
+app.use(express.static(__dirname + '/'));
+
+app.use(express.static(path.join(__dirname, '/css')));
+app.use(express.static(path.join(__dirname, 'fonts')));
+app.use(express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'js')));
+app.use(express.static(path.join(__dirname, 'sass')));
+
+
+// app.use(express.static('css'))
+// app.use(express.static('images'))
 
 app.get('/', function(req, res) {
 
